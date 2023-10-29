@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 const PostPic = ({ user }) => {
   const [file, setFile] = useState(null);
   const [caption, setCaption] = useState("");
-  const storage = getStorage(); // Initialize Firebase Storage
-  const db = getDatabase(); // Initialize Firebase Realtime Database
+  const storage = getStorage(); 
+  const db = getDatabase(); 
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -24,14 +24,14 @@ const PostPic = ({ user }) => {
       return;
     }
 
-    // Upload the image file to Firebase Storage
+    
     const storageRef = ref(storage, `images/${file.name}`);
     await uploadBytes(storageRef, file);
 
-    // Get the download URL for the uploaded image
+    
     const downloadURL = await getDownloadURL(storageRef);
 
-    // Create a new post object with the image URL and caption
+    
     const newPost = {
       user: user.displayName,
       content: caption,
@@ -39,12 +39,12 @@ const PostPic = ({ user }) => {
       timestamp: new Date().toLocaleString(),
     };
 
-    // Get a reference to the posts in the database and push the new post
+    
     const postsRef = rtdbRef(db, "posts");
-    const newPostRef = push(postsRef); // Create a new post reference with a unique key
-    update(newPostRef, newPost); // Update the post with data
+    const newPostRef = push(postsRef); 
+    update(newPostRef, newPost); 
 
-    // Clear the form
+    
     setFile(null);
     setCaption("");
   };

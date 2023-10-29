@@ -34,7 +34,7 @@ const OwnProfile = () => {
           orderByChild("user"),
           equalTo(userUsername)
         );
-        // Inside the onValue callback
+      
         onValue(userPostsQuery, (snapshot) => {
           const data = snapshot.val();
           if (data) {
@@ -43,7 +43,7 @@ const OwnProfile = () => {
               ...value,
             }));
 
-            // Reverse the order of userPostList
+         
             const reversedUserPostList = userPostList.reverse();
 
             setUserPosts(reversedUserPostList);
@@ -62,7 +62,7 @@ const OwnProfile = () => {
     const postRef = ref(db, `posts/${postKey}`);
     remove(postRef)
       .then(() => {
-        // Remove the deleted post from the userPosts state
+        
         setUserPosts((prevUserPosts) =>
           prevUserPosts.filter((post) => post.key !== postKey)
         );
@@ -88,8 +88,7 @@ const OwnProfile = () => {
       <div className="UserBox">
         <img className="UserImage" src={userprofile}></img>
         <div className="UserText">{username}</div>
-        {/* <div className="EditProfileButton"></div>
-        <div className="EditProfileText">edit profile</div> */}
+      
         <div className="UserPosts"></div>
       </div>
 

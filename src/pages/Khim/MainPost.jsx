@@ -56,14 +56,14 @@ const About = ({ user }) => {
       }
 
       if (updatedPosts[postIndex].likes[likeId]) {
-        // User has already liked the post, so we can remove the like
+       
         delete updatedPosts[postIndex].likes[likeId];
       } else {
-        // User hasn't liked the post, so we add a like
+        
         updatedPosts[postIndex].likes[likeId] = true;
       }
 
-      // Update the post in the database
+      
       const postRef = ref(db, `posts/${post.key}`);
       update(postRef, { likes: updatedPosts[postIndex].likes });
     }
@@ -85,7 +85,7 @@ const About = ({ user }) => {
         };
         updatedPosts[postIndex].comments.push(newComment);
 
-        // Update the post in the database
+        
         const postRef = ref(db, `posts/${post.key}`);
         update(postRef, { comments: updatedPosts[postIndex].comments });
       }
@@ -199,9 +199,7 @@ const About = ({ user }) => {
                      
                     </div>
 
-                    {/* Like button */}
-
-                    {/* Comment input */}
+                
                     <input
                       type="text"
                       placeholder="Add a comment..."
@@ -211,7 +209,7 @@ const About = ({ user }) => {
                     <button onClick={() => handleAddComment(post)}>
                       Add Comment
                     </button>
-                    {/* Comment section */}
+                  
                     <div className="commentBox">
                       {post.comments &&
                         post.comments.map((comment, commentIndex) => (
